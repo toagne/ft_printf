@@ -6,7 +6,7 @@
 #    By: mpellegr <mpellegr@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/22 09:17:47 by mpellegr          #+#    #+#              #
-#    Updated: 2024/05/17 17:04:07 by mpellegr         ###   ########.fr        #
+#    Updated: 2024/05/21 09:33:09 by mpellegr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(NAME): $(OBJECTS)
 
 clean:
 	make -C ./libft clean
-	$(RM) $(OBJECTS) $(BONUS_OBJECTS)
+	$(RM) $(OBJECTS)
 
 fclean: clean
 	make -C ./libft fclean
