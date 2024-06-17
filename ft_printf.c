@@ -6,35 +6,35 @@
 /*   By: mpellegr <mpellegr@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:18:17 by mpellegr          #+#    #+#             */
-/*   Updated: 2024/05/20 16:38:18 by mpellegr         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:10:04 by mpellegr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	find_format(va_list args, const char format)
+static int	find_format(va_list *args, const char format)
 {
 	size_t	len;
 
 	len = 0;
 	if (format == 'c')
-		len = ft_printchar(va_arg(args, int));
+		len = ft_printchar(va_arg(*args, int));
 	else if (format == 's')
-		len = ft_printstr(va_arg(args, char *));
+		len = ft_printstr(va_arg(*args, char *));
 	else if (format == 'p')
-		len = ft_printptr(va_arg(args, unsigned long));
+		len = ft_printptr(va_arg(*args, unsigned long));
 	else if (format == 'd' || format == 'i')
-		len = ft_printint(va_arg(args, int));
+		len = ft_printint(va_arg(*args, int));
 	else if (format == 'u')
-		len = ft_printuint(va_arg(args, unsigned int));
+		len = ft_printuint(va_arg(*args, unsigned int));
 	else if (format == 'x' || format == 'X')
-		len = ft_printhexa(va_arg(args, unsigned long), format);
+		len = ft_printhexa(va_arg(*args, unsigned long), format);
 	else if (format == '%')
 		len = ft_printchar('%');
 	return (len);
 }
 
-int	real_printf(va_list args, const char *str)
+int	real_printf(va_list *args, const char *str)
 {
 	int	printf_len;
 	int	tot_len;
@@ -79,7 +79,7 @@ int	ft_printf(const char *str, ...)
 		}
 		n++;
 	}
-	printf_len = real_printf(args, str);
+	printf_len = real_printf(&args, str);
 	if (printf_len == -1)
 		return (-1);
 	va_end(args);
